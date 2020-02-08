@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            var oBtn1=document.getElementById('btn1');
+            var oBtn2=document.getElementById('btn2');
+            var oBtn3=document.getElementById('btn3');
+            var oDiv=document.getElementById('div1');
+            var aCh=oDiv.getElementsByTagName('input');
+           // var aCh=document.getElementsByTagName('ihputf') btn也是input 所以给它讨一个div，先取出div的值再去input
+            oBtn1.onclick=function(){
+                //事件：checked
+               // aCh[0].checked=true;
+                //布尔值
+                for(var i=0;i<aCh.length;i++){
+                    aCh[i].checked=true;
+                }
+
+            }
+            
+            oBtn2.onclick=function(){
+                //事件：checked
+               // aCh[0].checked=true;
+                //布尔值
+                for(var i=0;i<aCh.length;i++){
+                    aCh[i].checked=false; //把布尔值改成false就可以了
+                }
+
+            }
+
+            oBtn3.onclick=function(){
+                for(var i=0;i<aCh.length;i++){
+                    if(aCh[i].checked==true){//注意=，==，===的区别
+                        aCh[i].checked=false;
+                    }else{
+                        aCh[i].checked=true;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input id="btn1" type="button" value="choose all"/><br>
+    <input id="btn2" type="button" value="no choose"/><br>
+    <input id="btn3" type="button" value="choose the not choosed"/><br>
+
+
+    <div id="div1">
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br>
+    <input type="checkbox"/><br> 
+    </div>
+   
+
+</body>
+</html>

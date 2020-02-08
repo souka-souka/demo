@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>相册</title>
+    <style>
+        body{
+            font-family:"Helvetica","Arial",serif;
+            color:#333;
+            margin:1em 10%;
+        }
+        h2{
+            color:#333;
+            background-color:transparent;
+
+        }
+        a{
+            color:#c60;
+            background-color:transparent;
+            font-weight:bold;
+            text-decoration:none;   
+        }
+        ul{
+            padding:0;
+        }
+        li{
+            float:left;
+            padding:1em;
+            list-style:none;
+        }
+        div{
+            clear:both;
+        }
+        #imagegallery{
+            list-style:none;
+        }
+        #imagegallery li{
+            margin:0px 20px 20px 0px;
+            padding:0px;
+            display:inline;
+
+        }
+        #imagegallery li a img{
+            border:0;
+        }
+    </style>
+    <!--1.点击小图片，改变下面的大图片的src属性值，让其赋值为a链接中的href属性值-->
+    <!--2.让p标签的innerHTML属性值，变成a便签的title属性值-->
+</head>
+<body>
+    <h2>Picture</h2>
+    <a href="#">Signin</a>
+    <ul id="imagegallery">
+        <li>
+            <a href="../img/1.jpg" title="A">
+                <img src="../img/1-small.jpg" width="100" alt="1"/>
+            </a>
+        </li>
+        <li>
+                <a href="../img/2.jpg" title="B">
+                    <img src="../img/2-small.jpg" width="100" alt="2"/>
+                </a>
+         </li>
+        <li>
+                <a href="../img/3.jpg" title="C">
+                    <img src="../img/3-small.jpg" width="100" alt="3"/>
+                </a>
+        </li>
+        <li>
+                <a href="../img/4.jpg" title="D">
+                    <img src="../img/4-small.jpg" width="100" alt="4"/>
+                </a>
+        </li>
+    </ul>
+    <div></div>
+    <img id="image" src="../img/placeholder.png" width="450px"/>
+    <p id="des">Please choose a picture!</p>
+    <script>
+        var ul=document.getElementById("imagegallery");
+        var aArr=ul.getElementsByTagName("a"); //获取ul中的超链接<a>
+        var img=document.getElementById("image"); 
+        var des=document.getElementById("des");
+
+        for(var i=0;i<aArr.length;i++){
+            aArr[i].onclick=function(){
+                img.src=this.href;//this指的是函数的调用者，和i并无关系，所以不会出错。
+                //img.src=aArr[i].href; 注意，上面这一行代码不要这样写成这样。
+                des.innerHTML=this.title;
+                return false; //return false表示：阻止继续执行下面的代码。
+            }
+        }
+    </script>
+    
+</body>
+</html>

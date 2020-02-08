@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{width:100px;height:100px;background:red;position:absolute;}
+        .box{border:1px dashed black;position:absolute;}
+    </style>
+    <script>
+        //在div和网页框中加入文字
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            var disX=0;
+            var disY=0;
+            oDiv.onmousedown=function(ev){
+                var oEvent=ev||event;
+                disX=oEvent.clientX-oDiv.offsetLeft;
+                disY=oEvent.clientY-oDiv.offsetTop;
+
+                //当鼠标按下时，创建一个box的div className为box
+                var oBox=document.createElement('div');
+                oBox.className='box';
+                //设置虚线框大小
+                //问题：当鼠标按下，因为没有给box定位所以点击左上脚会有闪现
+
+                oBox.style.width=oDiv.offsetWidth-2+'px';
+                oBox.style.height=oDiv.offsetHeight-2+'px';
+
+                oBox.style.left=oDiv.offsetLeft+'px';
+                oBox.style.top=oDiv.offsetTop+'px';
+
+                //把box插入到body里面
+                 document.body.appendChild(oBox);
+                   
+                    document.onmousemove=function(ev){
+                        var oEvent=ev||event;
+                        var l=oEvent.clientX-disX;
+                        var t=oEvent.clientY-disY;
+                        //移动的时候要让虚线跟着一起移动
+                        //问题：可以拖动动出多个虚线框
+                        oBox.style.left=l+'px';
+                        oBox.style.top=t+'px'; 
+                        //oDiv.style.left=l+'px';
+                        //oDiv.style.top=t+'px';   
+                    };
+                    document.onmouseup=function(){//注意大小写 哭哭
+                        document.onmousemove=null;
+                        document.onmouseup=null;
+                        //在清除虚线框前，让div跟着虚线框走
+                        oDiv.style.left=oBox.offsetLeft+'px';
+                        oDiv.style.top=oBox.offsetTop+'px';
+
+                        //当鼠标抬起时，清除虚线框
+                        document.body.removeChild(oBox);
+                    };
+                    return false;//chrome ff ie9   
+                
+            };
+        };
+
+        //出现错误，需要更正
+                  
+                
+                    
+
+        
+
+
+
+    </script>
+</head>
+<body>
+     <div id="div1">
+    </div>
+    
+    
+    
+</body>
+</html>
